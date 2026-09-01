@@ -8,13 +8,53 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = [
-            ['title' => 'The Lord of the Rings', 'author' => 'J.R.R. Tolkien', 'year' => 1954],
-            ['title' => 'Spiderman', 'author' => 'Lhorenz', 'year' => 2005],
-            ['title' => 'The Return of the King', 'author' => 'Khaliq', 'year' => 1999],
-            ['title' => 'World of Warcraft', 'author' => 'Lenard', 'year' => 1943],
-            ['title' => 'The Hobbit', 'author' => 'Justin', 'year' => 1954],
+        return view('books.index', ['books' => $this->books()]);
+    }
+    public function show(string $id)
+    {
+        $books = $this->books();
+
+        if (!isset ($books[$id])) 
+        {
+            abort(404);
+        }
+        return view('books.show', ['book' => $books[$id]]);
+    }
+
+    public function feature()
+    {
+        $books = $this->books();
+
+        return view('books.feature', ['book'=>$books[1]]);
+    }
+
+    public function filter(?string $value = null)
+    {
+        $books = $this->books();
+
+        if ($value){
+                $books=array_filter($books, fn($b) => 
+                    $b['title'] == $value ||
+                    $b['author'] == $value ||
+                    $b['genre'] == $value ||
+                    $b['year'] == $value,
+                );
+        }
+        return view('books.filter', 
+        ['books' => $books, 'activeFilter' => $value]);
+    }
+
+
+    private function books()
+    {
+        return [
+            1 =>['id' => 1, 'title' => 'The Lord of the Rings', 'author' => 'J.R.R. Tolkien', 'year' => '1954',  'genre' => 'Classical'],
+            2 =>['id' => 2,'title' => 'Spiderman', 'author' => 'Lhorenz', 'year' => '2000', 'genre' => 'Mystery'],
+            3 =>['id' => 3,'title' => 'The Return of the King', 'author' => 'Khaliq', 'year' => '1954', 'genre' => 'Historical'],
+            4 =>['id' => 4,'title' => 'World of Warcraft', 'author' => 'Lenard', 'year' => '2000', 'genre' => 'Historical'],
+            5 =>['id' => 5,'title' => 'The Hobbit', 'author' => 'Justin', 'year' => '1954', 'genre' => 'Classical'],
+            6 =>['id' => 6,'title' => 'The World of Computers', 'author' => 'Mikko', 'year' => '2000', 'genre' => 'Mystery'],
+            7 =>['id' => 7,'title' => 'Programmer', 'author' => 'Lhorenz', 'year' => '1954', 'genre' => 'Historical']
         ];
-        return view('books.index', ['books' => $books]);
     }
 }

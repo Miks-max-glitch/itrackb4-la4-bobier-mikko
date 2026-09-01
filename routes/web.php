@@ -1,10 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookController; 
+use App\Http\Controllers\BookController;
 
-Route::get('/whoami', function () {
-    return 'Mikko Bobier | 2023-70297 | Block 4A | ITRACKB4 Laravel 12';
-});
+Route::get('/books', [BookController::class, 'index'])
+    ->name('books.index');
 
-Route::get('/books', [BookController::class, 'index']);
+Route::get('/books/feature', [BookController::class, 'feature'])
+    ->name('books.feature');
+
+Route::get('/books/filter/{genre?}', [BookController::class, 'filter'])
+    ->name('books.filter');
+
+Route::get('/books/{id}', [BookController::class, 'show'])
+    ->name('books.show');

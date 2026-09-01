@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Book Recommendations</title>
+        <title>Filtered Books</title>
     </head>
     <body>
-        <h1>List of Recommendations</h1>
+        <h1>Filtered Book List</h1>
         <p>Prepared by: Mikko S. Bobier</p>
+
+        @if($activeFilter)
+            <p>Showing value: {{ $activeFilter }}</p>
+        @else
+            <p>Showing all books</p>
+        @endif
 
         <table border="1" cellpadding="8">
             <tr>
@@ -28,5 +34,7 @@
                 </tr>
             @endforeach
         </table>
+
+        <a href="{{ route('books.index') }}">Back to full list</a>
     </body>
 </html>
