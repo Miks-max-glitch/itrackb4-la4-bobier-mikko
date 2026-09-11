@@ -1,18 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Book Informations</title>
-</head>
-<body>
-    <h1>
-        {{ $book['title'] }}
-    </h1>
-    <p>Author: {{ $book['author'] }}</p>
-    <p>Year: {{ $book['year'] }}</p>
-    <p>Genre: {{ $book['genre'] }}</p>
-    <p>Prepared by: Mikko S. Bobier</p>
+@extends('layouts.app')
 
-    <a href="{{ route('books.index') }}">Back to List</a>
-</body>
-</html>
+@section('title', $book['title'])
+
+@section('content')
+
+    <h2>
+        {{ $book['title'] }}
+    </h2>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>Genre</th>
+        </tr>
+            <tr>
+                <td>
+                    <a href="{{ route('books.show', ['id' => $book['id']]) }}">{{ $book['id'] }}</a>
+                </td>
+                <td>{{ $book['title'] }}</td>
+                <td>{{ $book['author'] }}</td>
+                <td>{{ $book['year'] }}</td>
+                <td>{{ $book['genre'] }}</td>
+            </tr>
+    </table>
+    <a href="{{ route('books.index') }}" class="btn btn-secondary">Back to List</a>
+
+@endsection
 

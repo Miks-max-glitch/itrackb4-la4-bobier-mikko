@@ -9,3 +9,4 @@ They get a 404 page instead of an error screen. In show(), I check isset($books[
 Q3. Why do your links use route names instead of typed URLs? Give one concrete thing that would break if they did not.
 
 I used route('books.show', ['id' => $book['id']]) instead of typing /books/3 directly, so links update automatically if I rename a route. If I had hard-coded the URLs, renaming /books would break every link pointing back to the list page.
+# itrackb4-la4-bobier-mikko-
