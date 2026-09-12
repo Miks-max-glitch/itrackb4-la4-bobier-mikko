@@ -4,11 +4,12 @@
 
 @section('content')
 
-    <h2>Filtered Book List</h2>
+    <h2 class="mb-3">Filtered Book List</h2>
 
     <div class="mb-3">
         @if($activeFilter)
             <span class="badge bg-primary">Showing: {{ $activeFilter }}</span>
+            <a href="{{ route('books.filter') }}" class="btn btn-sm btn-outline-secondary ms-2">Clear Filter</a>
         @else
             <span class="badge bg-secondary">Showing all books</span>
         @endif

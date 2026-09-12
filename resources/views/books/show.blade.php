@@ -4,72 +4,19 @@
 
 @section('content')
 
-<div class="container py-4">
-<div class="row justify-content-center">
+    <h2 class="mb-3">Book Details</h2>
 
-    <div class="col-md-8 col-lg-6">
-
-        <div class="card shadow border-0">
-
-            <div class="card-header bg-primary text-white text-center py-3">
-                <h4 class="mb-0">Book Details</h4>
-            </div>
-
-            <div class="card-body p-4">
-
-                <div class="text-center mb-4">
-
-                    <h2 class="fw-bold text-primary">
-                        {{ $book['title'] }}
-                    </h2>
-
-                    <span class="badge bg-info text-dark">
-                        {{ $book['genre'] }}
-                    </span>
-
-                </div>
-
-                <div class="list-group">
-
-                    <div class="list-group-item d-flex justify-content-between">
-                        <strong>ID</strong>
-                        <span>{{ $book['id'] }}</span>
-                    </div>
-
-                    <div class="list-group-item d-flex justify-content-between">
-                        <strong>Author</strong>
-                        <span>{{ $book['author'] }}</span>
-                    </div>
-
-                    <div class="list-group-item d-flex justify-content-between">
-                        <strong>Year</strong>
-                        <span>{{ $book['year'] }}</span>
-                    </div>
-
-                    <div class="list-group-item d-flex justify-content-between">
-                        <strong>Genre</strong>
-                        <span>{{ $book['genre'] }}</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="card-footer bg-white text-center py-3">
-
-                <a href="{{ route('books.index') }}"
-                   class="btn btn-secondary">
-                    ← Back to List
-                </a>
-
-            </div>
-
+    <div class="card mb-3" style="max-width: 420px;">
+        <div class="card-header bg-primary text-white">
+            Title: {{ $book['title'] }}
         </div>
-
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Genre: {{ $book['genre'] }}</li>
+            <li class="list-group-item">Author: {{ $book['author'] }}</li>
+            <li class="list-group-item">Year: {{ $book['year'] }}</li>
+        </ul>
     </div>
 
-</div>
-
-</div>
+    <a href="{{ route('books.index') }}" class="btn btn-secondary">Back to List</a>
 
 @endsection

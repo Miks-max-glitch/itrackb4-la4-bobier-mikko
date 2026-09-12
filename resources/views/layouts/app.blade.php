@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset=""UTF-8">
-        <title>@yield('title')</title>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    </head>
-    <body>
-        <h1>My Library</h1>
-        <p>Prepared by: Mikko S. Bobier</p>
-        
+<head>
+    <meta charset="UTF-8">
+    <title>@yield('title', 'Libsys Portal')</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-4 mb-5">
+
+        <h1 class="mb-1">Libsys Portal</h1>
+        <p class="text-muted mb-3">Prepared by: Mikko S. Bobier</p>
+
         @include('partials._nav')
 
         @yield('content')
-    
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    </body>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

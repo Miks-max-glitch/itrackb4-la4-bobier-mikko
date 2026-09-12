@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h2>List of Recommendations</h2>
+    <h2 class="mb-3">List of Recommendations</h2>
 
     <table class="table table-striped">
         <thead>
