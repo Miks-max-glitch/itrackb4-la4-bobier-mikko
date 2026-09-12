@@ -10,11 +10,12 @@ class BookController extends Controller
     {
         return view('books.index', ['books' => $this->books()]);
     }
+
     public function show(string $id)
     {
         $books = $this->books();
 
-        if (!isset ($books[$id])) 
+        if (!isset($books[$id]))
         {
             abort(404);
         }
@@ -25,36 +26,39 @@ class BookController extends Controller
     {
         $books = $this->books();
 
-        return view('books.feature', ['book'=>$books[1]]);
+        return view('books.feature', ['book' => $books[1]]);
     }
 
-    public function filter(?string $value = null)
+    public function filter(?string $genre = null)
     {
         $books = $this->books();
 
-        if ($value){
-                $books=array_filter($books, fn($b) => 
-                    $b['title'] == $value ||
-                    $b['author'] == $value ||
-                    $b['genre'] == $value ||
-                    $b['year'] == $value,
-                );
+        if ($genre) {
+            $books = array_filter($books, fn($b) =>
+                $b['title'] == $genre ||
+                $b['author'] == $genre ||
+                $b['genre'] == $genre ||
+                $b['year'] == $genre,
+            );
         }
-        return view('books.filter', 
-        ['books' => $books, 'activeFilter' => $value]);
-    }
 
+        return view('books.filter', [
+            'books' => $books,
+            'activeFilter' => $genre,
+        ]);
+    }
+    
 
     private function books()
     {
         return [
-            1 =>['id' => 1, 'title' => 'The Lord of the Rings', 'author' => 'J.R.R. Tolkien', 'year' => '1950',  'genre' => 'Classical'],
-            2 =>['id' => 2,'title' => 'Spiderman', 'author' => 'Lhorenz', 'year' => '2011', 'genre' => 'Mystery'],
-            3 =>['id' => 3,'title' => 'The Return of the King', 'author' => 'Khaliq', 'year' => '1954', 'genre' => 'Historical'],
-            4 =>['id' => 4,'title' => 'World of Warcraft', 'author' => 'Lenard', 'year' => '2000', 'genre' => 'Historical'],
-            5 =>['id' => 5,'title' => 'The Hobbit', 'author' => 'Justin', 'year' => '1954', 'genre' => 'Classical'],
-            6 =>['id' => 6,'title' => 'The World of Computers', 'author' => 'Mikko', 'year' => '2010', 'genre' => 'Mystery'],
-            7 =>['id' => 7,'title' => 'Programmer', 'author' => 'Lhorenz', 'year' => '1978', 'genre' => 'Historical']
+            1 => ['id' => 1, 'title' => 'The Lord of the Rings', 'author' => 'J.R.R. Tolkien', 'year' => '1950', 'genre' => 'Classical'],
+            2 => ['id' => 2, 'title' => 'Spiderman', 'author' => 'Lhorenz', 'year' => '2011', 'genre' => 'Mystery'],
+            3 => ['id' => 3, 'title' => 'The Return of the King', 'author' => 'Khaliq', 'year' => '1954', 'genre' => 'Historical'],
+            4 => ['id' => 4, 'title' => 'World of Warcraft', 'author' => 'Lenard', 'year' => '2000', 'genre' => 'Historical'],
+            5 => ['id' => 5, 'title' => 'The Hobbit', 'author' => 'Justin', 'year' => '1954', 'genre' => 'Classical'],
+            6 => ['id' => 6, 'title' => 'The World of Computers', 'author' => 'Mikko', 'year' => '2010', 'genre' => 'Mystery'],
+            7 => ['id' => 7, 'title' => 'Programmer', 'author' => 'Lhorenz', 'year' => '1978', 'genre' => 'Historical'],
         ];
     }
 }
